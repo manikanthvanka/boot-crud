@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    password: hHeDUpiqZi
+    url: jdbc:mysql://remotemysql.com:3306/iPCN2VpfZR?useSSL=false
+    username: iPCN2VpfZR
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
