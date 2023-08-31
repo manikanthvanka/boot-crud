@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eligibility Chart</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 80%; margin: auto;">
+        <canvas id="eligibilityChart"></canvas>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Sample data
+            var data = {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [
+                    {
+                        label: 'Eligibility',
+                        data: [50, 70, 40, 60, 80],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Non-Eligibility',
+                        data: [30, 40, 20, 35, 45],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            var ctx = $('#eligibilityChart')[0].getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    onClick: function(event, elements) {
+                        if (elements.length > 0) {
+                            var clickedIndex = elements[0].index;
+                            var label = chart.data.labels[clickedIndex];
+                            var eligibilityValue = chart.data.datasets[0].data[clickedIndex];
+                            var nonEligibilityValue = chart.data.datasets[1].data[clickedIndex];
+                            
+                            alert(label + ': Eligibility: ' + eligibilityValue + ', Non-Eligibility: ' + nonEligibilityValue);
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
